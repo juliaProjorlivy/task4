@@ -14,22 +14,36 @@ size_t split_line(char *data, char **ptr_data) // fills the array of pointers (h
     size_t str_count = 0;
     size_t i = 0;
     size_t data_size = strlen(data);
-
-    *ptr_data = data;
+    printf("%zu\n", data_size);
 
     for(; i < data_size; i++)
     {
+        // printf("c = %c\n", data[i]);
         if(data[i] == '\n')
         {
             data[i] = '\0';
-            if(i < data_size - 1 && data[i + 1] == '\n')
+
+            if((i < (data_size - 1)) && data[i + 1] == '\n')
             {
-                continue;
+                str_count++;
+                // continue;
             }
-            str_count++;
-            ptr_data[str_count] = data + i + 1;
+            else if((i > 0) && data[i - 1] == '\0')
+            {
+                ptr_data[str_count] = data + i + 1;
+                // continue;
+            }
+            else
+            {
+                str_count++;
+                ptr_data[str_count] = data + i + 1;   
+            }
+    
+            // str_count++;
+            // ptr_data[str_count] = data + i + 1;
         }
     }
+    *ptr_data = data;
     return str_count;
 }
 
@@ -39,7 +53,7 @@ size_t make_ptr_array(char *data, char **ptr_data) // returns the number of stri
     assert(ptr_data != NULL);
 
     size_t str_count = split_line(data, ptr_data);
-    ptr_data = (char **)realloc(ptr_data, str_count);
+    ptr_data = (char **)realloc(ptr_data, str_count + 1);
     return str_count;
 } 
 
