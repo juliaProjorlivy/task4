@@ -14,24 +14,20 @@ int main()
     char *data = get_data_from_file("data.txt"); // free data !!!!!
     char **ptr_data = (char **)calloc(sizeof(char*), max_str_count);
     size_t str_count = make_ptr_array(data, ptr_data); //number of string (does not include an emply lines and does not count the last empty string)
-    printf("%zu\n", str_count);
     puts("------------------------------------------");
     for(size_t i = 0; i < str_count; i++)
     {
         printf("%s\n", *(ptr_data + i));
     }
     puts("------------------------------------------");
-    // printf("%s\n", *(ptr_data));
 
-    // printf("%s\n", *(ptr_data  + 11));
-    // printf("%d\n", strcmp("abcd abc", "abcd aaa"));
-    // qsort(ptr_data, str_count, sizeof(char*), string_compare);
-    // printf("%s\n", *(ptr_data + 3));
-    // for(size_t i = 0; i < str_count; i++)
-    // {
-    //     printf("%s\n", *(ptr_data + i));
-    // }
+    printf("%d\n", strcmp("Was in fact a fine estate,", "Beside a river. On every side,"));
+    qsort(ptr_data, str_count, sizeof(char*), string_compare);
 
-    // printf("n = %zu\n", strlen(data));
+    for(size_t i = 0; i < str_count; i++)
+    {
+        printf("%s\n", *(ptr_data + i));
+    }
+
     return 0;
 }
