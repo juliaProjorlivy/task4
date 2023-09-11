@@ -14,6 +14,8 @@ int main()
     char *data = get_data_from_file("data.txt"); // free data !!!!!
     char **ptr_data = (char **)calloc(sizeof(char*), max_str_count);
     size_t str_count = make_ptr_array(data, ptr_data); //number of string (does not include an emply lines and does not count the last empty string)
+    
+    
     puts("------------------------------------------");
     for(size_t i = 0; i < str_count; i++)
     {
@@ -21,8 +23,9 @@ int main()
     }
     puts("------------------------------------------");
 
-    printf("%d\n", strcmp("Was in fact a fine estate,", "Beside a river. On every side,"));
-    qsort(ptr_data, str_count, sizeof(char*), string_compare);
+    // qsort(ptr_data, str_count, sizeof(char*), string_compare_left_right);
+    
+    qsort(ptr_data, str_count, sizeof(char*), string_compare_right_left);
 
     for(size_t i = 0; i < str_count; i++)
     {
