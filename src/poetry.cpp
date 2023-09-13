@@ -25,12 +25,16 @@ int main()
 
     // qsort(ptr_data, str_count, sizeof(char*), string_compare_left_right);
     
-    qsort(ptr_data, str_count, sizeof(char*), string_compare_right_left);
+    // qsort(ptr_data, str_count, sizeof(char*), string_compare_right_left);
+
+    qsort(data, str_count, sizeof(char*), string_compare_right_left_version2);
 
     for(size_t i = 0; i < str_count; i++)
     {
         printf("%s\n", *(ptr_data + i));
     }
+
+    printf("%d\n", string_compare_right_left_version2("cba", "abc"));
 
     return 0;
 }
