@@ -1,3 +1,4 @@
+#include "make_ptr_array.h"
 #include "myerror.h"
 #include <assert.h>
 #include <stdio.h>
@@ -66,15 +67,17 @@ char *get_data_from_file(const char *filename) // collect data from file to the 
     if(!stat(filename, &buf))
     {
         size_t data_size = buf.st_size; 
-        char *data = (char *)calloc(sizeof(char), data_size + 1);
+        char *data = (char *)calloc(sizeof(char), data_size + 1); // free data!
         if(data == NULL)
         {
+            fclose(file);
             ERROR("memory allocation failure");
             return NULL;
         }
 
         if(data_size != fread(data, sizeof(char), data_size, file))
         {
+            fclose(file);
             ERROR("can not read the file");
             return NULL;
         }
@@ -83,9 +86,12 @@ char *get_data_from_file(const char *filename) // collect data from file to the 
     }
     else
     {
+        fclose(file);
         ERROR("unable to stat");
         return NULL;
     }
 
+    fclose(file);
+    
     return NULL;
 }
