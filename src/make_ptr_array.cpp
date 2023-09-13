@@ -48,7 +48,8 @@ size_t make_ptr_array(char *data, char **ptr_data) // returns the number of stri
     assert(ptr_data != NULL);
 
     size_t str_count = split_line(data, ptr_data);
-    ptr_data = (char **)realloc(ptr_data, sizeof(char*)*(str_count + 1));
+    ptr_data = (char **)realloc(ptr_data, (str_count + 1) * sizeof(char*));
+
     return str_count;
 } 
 

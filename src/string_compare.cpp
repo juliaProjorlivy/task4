@@ -39,7 +39,3 @@ int string_compare_right_left(const void *line1, const void *line2)
 
     return *(const unsigned char *)(line11 + len1 - i) - *(const unsigned char *)(line22 + len2 - i);
 }
-
-
-
-
