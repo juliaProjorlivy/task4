@@ -40,9 +40,10 @@ int main()
 
     print_sorted_text_rl(ptr_data, str_count);
     
+    // free(data);
     // free(ptr_data); // frees memory that is allocated for the pointers
     // free(*ptr_data); // frees data too cause *ptr_data point to the start of the data and frees all the memory allocated for the data
-    free(data);
+    free(*ptr_data);
     free(ptr_data); // frees memory that is allocated for the pointers
 
     return 0;
