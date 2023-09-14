@@ -29,6 +29,7 @@ int main()
     char **ptr_data = make_ptr_array(data, &str_count); //number of string (does not include an emply lines and does not count the last empty string)
     if(ptr_data == NULL)
     {
+        free(data);
         ERROR("cannot make an arrauy");
         return 1;
     }

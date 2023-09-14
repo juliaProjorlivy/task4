@@ -7,7 +7,7 @@
 #include <sys/stat.h>
 #include <unistd.h>
 
-size_t split_line(char *data, char **ptr_data) // fills the array of pointers (have to know string count)
+size_t split_line(char *data, char **ptr_data)
 {
     assert(data != NULL);
     assert(ptr_data != NULL);
@@ -15,30 +15,25 @@ size_t split_line(char *data, char **ptr_data) // fills the array of pointers (h
     size_t str_count = 0;
     size_t i = 0;
     size_t data_size = strlen(data);
-
-    *ptr_data = data;
+    size_t strlen = 0; // the lenght of each string
 
     for(; i < data_size; i++)
     {
+        strlen++;
         if(data[i] == '\n')
         {
             data[i] = '\0';
 
-            if((i < (data_size - 1)) && data[i + 1] == '\n')
+            if(strlen > 1) // if it is not an empty line
             {
+                data[i] = '\0';
+                *(ptr_data + str_count) = data + i - strlen + 1;
                 str_count++;
             }
-            else if((i > 0) && data[i - 1] == '\0')
-            {
-                ptr_data[str_count] = data + i + 1;
-            }
-            else
-            {
-                str_count++;
-                ptr_data[str_count] = data + i + 1;   
-            }
+            strlen = 0;
         }
     }
+
     return str_count;
 }
 
@@ -79,7 +74,7 @@ char *get_data_from_file(const char *filename) // collect data from file to the 
             return NULL;
         }
 
-        if(data_size != fread(data, sizeof(char), data_size, file))
+        if(!fread(data, sizeof(char), data_size, file))
         {
             fclose(file);
             ERROR("can not read the file");
@@ -89,14 +84,8 @@ char *get_data_from_file(const char *filename) // collect data from file to the 
         fclose(file);
         return data;
     }
-    else
-    {
-        fclose(file);
-        ERROR("unable to stat");
-        return NULL;
-    }
 
     fclose(file);
-    
+    ERROR("unable to stat");
     return NULL;
 }
