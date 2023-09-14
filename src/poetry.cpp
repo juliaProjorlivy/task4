@@ -5,15 +5,15 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-void clean_data(char **data, size_t data_size)
-{
-    assert(data != NULL);
+// void clean_data(char **data, size_t data_size)
+// {
+//     assert(data != NULL);
 
-    for(size_t i = 0; i < data_size; i++)
-    {
-        free(*(data + i));
-    }
-}
+//     for(size_t i = 0; i < data_size; i++)
+//     {
+//         free(*(data + i));
+//     }
+// }
 
 int main()
 {
@@ -25,13 +25,14 @@ int main()
     }
 
     size_t str_count = 0;
+
     char **ptr_data = make_ptr_array(data, &str_count); //number of string (does not include an emply lines and does not count the last empty string)
     if(ptr_data == NULL)
     {
         ERROR("cannot make an arrauy");
         return 1;
     }
-
+    
     print_simple_text(ptr_data, str_count);
 
     print_sorted_text_lr(ptr_data, str_count);

@@ -86,6 +86,7 @@ char *get_data_from_file(const char *filename) // collect data from file to the 
             return NULL;
         }
 
+        fclose(file);
         return data;
     }
     else
