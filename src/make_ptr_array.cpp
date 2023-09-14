@@ -42,15 +42,18 @@ size_t split_line(char *data, char **ptr_data) // fills the array of pointers (h
     return str_count;
 }
 
-size_t make_ptr_array(char *data, char **ptr_data) // returns the number of strings in data
+char **make_ptr_array(char *data, size_t *str_count) // returns the number of strings in data
 {
     assert(data != NULL);
-    assert(ptr_data != NULL);
+    assert(str_count != NULL);
 
-    size_t str_count = split_line(data, ptr_data);
-    ptr_data = (char **)realloc(ptr_data, (str_count + 1) * sizeof(char*));
+    const size_t max_str_count = 200;
 
-    return str_count;
+    char **ptr_data = (char **)calloc(sizeof(char **), max_str_count);
+    *str_count = split_line(data, ptr_data);
+    ptr_data = (char **)realloc(ptr_data, ((*str_count) + 1) * sizeof(char*));
+
+    return ptr_data;
 } 
 
 char *get_data_from_file(const char *filename) // collect data from file to the array data
