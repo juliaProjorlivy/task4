@@ -3,6 +3,7 @@
 #include <assert.h>
 #include <string.h>
 #include <stdio.h>
+#include <ctype.h>
 
 int string_compare_left_right(const void *line1, const void *line2)
 {
@@ -29,13 +30,15 @@ int string_compare_right_left(const void *line1, const void *line2)
 
     while((i <= len1) && (i <= len2))
     {
-        if(*(line11 + len1 - i) != *(line22 + len2 - i))
+        const char *l1 = line11 + len1 - i;
+        const char *l2 = line22 + len2 - i;
+        if((*l1 != *l2) && isalpha(*l1) && isalpha(*l2))
         {
-            break;
+            return *(const unsigned char *)(line11 + len1 - i) - *(const unsigned char *)(line22 + len2 - i);
         }
 
         i++;
     }
 
-    return *(const unsigned char *)(line11 + len1 - i) - *(const unsigned char *)(line22 + len2 - i);
+    return 0;
 }
