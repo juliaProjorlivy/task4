@@ -14,13 +14,13 @@ size_t partition(int *data, size_t data_size) // sorts numbers relative to the m
 
     size_t right = data_size - 1;
     size_t left = 0;
-    size_t mid = data_size/2;
+    size_t mid = data_size / 2;
 
     while(1)
     {
         right = data_size - 1;
         left = 0;
-        mid = data_size/2;
+        mid = data_size / 2;
 
         while((*(data + right) >= *(data + mid)) && right > mid) //getting closer to the middle from the right
         {
@@ -61,16 +61,17 @@ int Sort(int *data, size_t data_size)
 {
     assert(data != NULL);
 
+    const size_t el_limit = 5;
     size_t mid = partition(data, data_size);
 
-    if(data_size > 5)
+    if(data_size > el_limit)
     {
         Sort(data, mid);
         Sort(data + mid + 1, mid - (1 - (data_size % 2))); 
     }
 
     simpleSort(data);
-    simpleSort(data + (data_size%2) + 2);
+    simpleSort(data + (data_size % 2) + 2);
 
     return 0;
 }
