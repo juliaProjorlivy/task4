@@ -13,6 +13,6 @@ void print_sorted_text_lr_qs(char **ptr_data, size_t str_count);
 
 void print_sorted_text_rl_qs(char **ptr_data, size_t str_count);
 
-// void print_sorted_text(int argc, const char *argv[]);
+void print_sorted_text(int argc, const char *argv[], char **ptr_data, size_t str_count);
 
 #endif

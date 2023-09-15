@@ -37,15 +37,7 @@ int main(int argc, const char *argv[])
         return 1;
     }
 
-    print_simple_text(ptr_data, str_count);
-    
-    print_sorted_text_lr(ptr_data, str_count);
-
-    print_sorted_text_lr_qs(ptr_data, str_count);
-
-    print_sorted_text_rl(ptr_data, str_count);
-
-    print_sorted_text_rl_qs(ptr_data, str_count);
+    print_sorted_text(argc, argv, ptr_data, str_count);
     
     free(data);
     free(ptr_data);
