@@ -29,7 +29,7 @@ static size_t partition(char **data, size_t data_size, int (*compare)(const char
     size_t right = data_size - 1;
     size_t mid = data_size / 2;
 
-    while(1)
+    while(left < right)
     {
         while(right > mid && (compare(*(data + right), *(data + mid)) >= 0)) //getting closer to the middle from the right
         {
@@ -41,10 +41,10 @@ static size_t partition(char **data, size_t data_size, int (*compare)(const char
             left++;
         }
 
-        if(left == right)
-        {
-            break; 
-        }
+        // if(left == right)
+        // {
+        //     break; 
+        // }
         
         swap(data, left, right);
 
@@ -54,8 +54,7 @@ static size_t partition(char **data, size_t data_size, int (*compare)(const char
         }
         else if(left == mid)
         {
-            left = right;
-            mid = left;
+            mid = right;
         }
 
     }
