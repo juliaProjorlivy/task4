@@ -3,6 +3,8 @@
 
 void swap(int *data, size_t index1, size_t index2)
 {
+    assert(data != NULL);
+
     int tmp = *(data + index2);
     *(data + index2) = *(data + index1);
     *(data + index1) = tmp;
@@ -28,7 +30,6 @@ size_t partition(int *data, size_t data_size)
 
     while(1)
     {
-
         while((*(data + right) >= *(data + mid)) && right > mid) //getting closer to the middle from the right
         {
             right--;
@@ -61,9 +62,10 @@ size_t partition(int *data, size_t data_size)
     return mid;
 }
 
-
 int Sort(int *data, size_t data_size)
 {
+    assert(data != NULL);
+    
     size_t mid = partition(data, data_size);
 
     if(data_size > 2)
@@ -90,4 +92,3 @@ int Sort(int *data, size_t data_size)
     
     return 0;
 }
-
