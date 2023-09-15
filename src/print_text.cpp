@@ -46,3 +46,25 @@ void print_sorted_text_rl(char **ptr_data, size_t str_count)
     print(str_count, ptr_data);
 
 }
+
+void print_sorted_text_lr_qs(char **ptr_data, size_t str_count)
+{
+    assert(ptr_data != NULL);
+
+    puts("this is a text sorted form left to right with the quick sort function");
+
+    qsort(ptr_data, str_count, sizeof(char*), string_compare_left_right);
+
+    print(str_count, ptr_data);
+}
+
+void print_sorted_text_rl_qs(char **ptr_data, size_t str_count)
+{
+    assert(ptr_data != NULL);
+
+    puts("this is a text sorted form right to left with the quick sort function");
+
+    qsort(ptr_data, str_count, sizeof(char*), string_compare_right_left);
+
+    print(str_count, ptr_data);
+}

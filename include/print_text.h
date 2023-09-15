@@ -9,4 +9,8 @@ void print_sorted_text_lr(char **ptr_data, size_t str_count);
 
 void print_sorted_text_rl(char **ptr_data, size_t str_count);
 
+void print_sorted_text_lr_qs(char **ptr_data, size_t str_count);
+
+void print_sorted_text_rl_qs(char **ptr_data, size_t str_count);
+
 #endif
