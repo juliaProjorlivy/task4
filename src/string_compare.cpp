@@ -3,7 +3,19 @@
 #include <assert.h>
 #include <string.h>
 #include <stdio.h>
-#include <ctype.h>
+
+static char *reverse_line(const char *line)
+{
+    size_t len = strlen(line);
+    char *reversed_line = (char *)calloc(sizeof(char), len);
+
+    for(size_t i = 0; i < len; i++)
+    {
+        *(reversed_line + i) = *(line + len - i - 1);
+    }
+    
+    return reversed_line;
+}
 
 int string_compare_left_right(const void *line1, const void *line2)
 {
@@ -24,23 +36,15 @@ int string_compare_right_left(const void *line1, const void *line2)
     const char *line11 = (const char *)(*((char **)line1));
     const char *line22 = (const char *)(*((char **)line2));
 
-    size_t len1 = strlen(line11) - 1;
-    size_t len2 = strlen(line22) - 1;
-    size_t i = 0;
+    char *reversed_line1 = reverse_line(line11);
+    char *reversed_line2 = reverse_line(line22);
 
-    while((i <= len1) && (i <= len2))
-    {
-        const char *l1 = line11 + len1 - i;
-        const char *l2 = line22 + len2 - i;
-        if((*l1 != *l2) && isalpha(*l1) && isalpha(*l2))
-        {
-            return *(const unsigned char *)(line11 + len1 - i) - *(const unsigned char *)(line22 + len2 - i);
-        }
+    int res = strcmp((const char *)reversed_line1, (const char *)reversed_line2);
 
-        i++;
-    }
+    free(reversed_line1);
+    free(reversed_line2);
 
-    return 0;
+    return res;
 }
 
 int string_compare_left_right_qs(const char *line1, const char *line2)
@@ -56,30 +60,13 @@ int string_compare_right_left_qs(const char *line1, const char *line2)
     assert(line1 != NULL);
     assert(line2 != NULL);
 
-    size_t len1 = strlen(line1) - 1;
-    size_t len2 = strlen(line2) - 1;
-    size_t i = 0;
+    char *reversed_line1 = reverse_line(line1);
+    char *reversed_line2 = reverse_line(line2);
 
-    while((i <= len1) && (i <= len2))
-    {
-        const char *l1 = line1 + len1 - i;
-        const char *l2 = line2 + len2 - i;
-        if((*l1 != *l2) && isalpha(*l1) && isalpha(*l2))
-        {
-            return *(const unsigned char *)(line1 + len1 - i) - *(const unsigned char *)(line2 + len2 - i);
-        }
+    int res = strcmp((const char *)reversed_line1, (const char *)reversed_line2);
 
-        i++;
-    }
+    free(reversed_line1);
+    free(reversed_line2);
 
-    return 0;
-}
-
-int compare_n(const void *line1, const void *line2)
-{
-
-    int line11 = (*(int *)line1);   
-    int line22 = (*(int *)line2);
-
-    return (line11 - line22);
+    return res;
 }

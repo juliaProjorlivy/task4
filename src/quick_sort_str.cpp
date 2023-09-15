@@ -40,11 +40,6 @@ static size_t partition(char **data, size_t data_size, int (*compare)(const char
         {
             left++;
         }
-
-        // if(left == right)
-        // {
-        //     break; 
-        // }
         
         swap(data, left, right);
 

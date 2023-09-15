@@ -71,6 +71,30 @@ void print_sorted_text_rl_qs(char **ptr_data, size_t str_count)
     print(str_count, ptr_data);
 }
 
+void print_sorted_text_lr_qs2(char **ptr_data, size_t str_count)
+{
+    assert(ptr_data != NULL);
+
+    puts("this is a text sorted form left to right using Sort2 function");
+
+    Sort2(ptr_data, str_count, sizeof(char*), string_compare_left_right);
+
+    print(str_count, ptr_data);
+
+}
+
+void print_sorted_text_rl_qs2(char **ptr_data, size_t str_count)
+{
+    assert(ptr_data != NULL);
+
+    puts("this is a text sorted form right to left using Sort2 function");
+
+    Sort2(ptr_data, str_count, sizeof(char*), string_compare_right_left);
+
+    print(str_count, ptr_data);
+
+}
+
 void print_sorted_text(int argc, const char *argv[], char **ptr_data, size_t str_count)
 {
     assert(argv != NULL);
@@ -84,13 +108,14 @@ void print_sorted_text(int argc, const char *argv[], char **ptr_data, size_t str
         else if(!strcmp(argv[1], "-l")) // sorted from left to right
         {
             print_sorted_text_lr_qs(ptr_data, str_count);
+            print_sorted_text_lr(ptr_data, str_count);
+            print_sorted_text_lr_qs2(ptr_data, str_count);
         }
         else if(!strcmp(argv[1], "-r")) // sorted from right to left
         {
             print_sorted_text_rl_qs(ptr_data, str_count);
             print_sorted_text_rl(ptr_data, str_count);
+            print_sorted_text_rl_qs2(ptr_data, str_count);
         }
-
     }
-        
 }

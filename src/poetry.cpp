@@ -3,19 +3,8 @@
 #include "print_text.h"
 #include "string_compare.h"
 #include "myerror.h"
-#include <assert.h>
 #include <stdlib.h>
 #include <stdio.h>
-
-// void clean_data(char **data, size_t data_size)
-// {
-//     assert(data != NULL);
-
-//     for(size_t i = 0; i < data_size; i++)
-//     {
-//         free(*(data + i));
-//     }
-// }
 
 int main(int argc, const char *argv[])
 {

@@ -1,8 +1,10 @@
 #include "quick_sort_str.h"
 #include <assert.h>
 
-void swap(void *data1, size_t index1, size_t index2, size_t el_size) // swaps two pointers
+static void swap(void *data1, size_t index1, size_t index2, size_t el_size) // swaps two pointers
 {
+    assert(data1 != NULL);
+
     char *data = (char *)data1;
     char tmp = *(data + index2*el_size);
     *(data + index2*el_size) = *(data + index1*el_size);
@@ -24,8 +26,10 @@ static void simpleSort(void *data1, size_t el_size, int (*compare)(const void *,
 
 static size_t partition(void *data1, size_t data_size, size_t el_size, int (*compare)(const void *, const void *))
 {
+    assert(data1 != NULL);
+
     char *data = (char *)data1;
-    char **data2 = (char **)data;
+
     size_t left = 0;
     size_t right = data_size - 1;
     size_t mid = data_size / 2;
@@ -41,12 +45,12 @@ static size_t partition(void *data1, size_t data_size, size_t el_size, int (*com
         {
             left++;
         }
-        printf("left = %zu, right = %zu\n", left, right);
+        
         if(left == right)
         {
             break; 
         }
-        printf("l1 = %s, l2 = %s\n", data2[left], data2[right]);
+        
         swap(data1, left, right, el_size);
 
         if(right == mid)
@@ -55,7 +59,6 @@ static size_t partition(void *data1, size_t data_size, size_t el_size, int (*com
         }
         else if(left == mid)
         {
-            left = right;
             mid = left;
         }
 
@@ -65,30 +68,29 @@ static size_t partition(void *data1, size_t data_size, size_t el_size, int (*com
 }
 
 
-int Sort(void *data1, size_t data_size, size_t el_size, int (*compare)(const void *, const void *))
+int Sort2(void *data1, size_t data_size, size_t el_size, int (*compare)(const void *, const void *))
 {
+    assert(data1 != NULL);
+
     char *data = (char *)data1;
-    char **data2 = (char **)data1;
-    printf("data1 = %s, data_size = %zu, el_szie = %zu\n" , data2[0], data_size, el_size);
 
     size_t mid = partition(data1, data_size, el_size, compare);
-    // size_t mid = data_size/2;
 
     if(data_size > 2)
     {
         
         if(mid == 0)
         {
-            Sort((void *)(data + 1*el_size), data_size - 1, el_size, compare);
+            Sort2((void *)(data + 1*el_size), data_size - 1, el_size, compare);
         }
         else if(mid == data_size - 1)
         {
-            Sort((void *)data, data_size - 1, el_size, compare);
+            Sort2((void *)data, data_size - 1, el_size, compare);
         }
         else
         {
-            Sort((void *)data, mid, el_size, compare);
-            Sort((void *)(data + (mid + 1)*el_size), data_size - mid - 1, el_size, compare);
+            Sort2((void *)data, mid, el_size, compare);
+            Sort2((void *)(data + (mid + 1)*el_size), data_size - mid - 1, el_size, compare);
         }      
 
     }
