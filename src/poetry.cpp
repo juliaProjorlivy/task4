@@ -1,5 +1,7 @@
 #include "make_ptr_array.h"
+#include "quick_sort_str.h"
 #include "print_text.h"
+#include "string_compare.h"
 #include "myerror.h"
 #include <assert.h>
 #include <stdlib.h>
@@ -15,8 +17,9 @@
 //     }
 // }
 
-int main()
+int main(int argc, const char *argv[])
 {
+
     char *data = get_data_from_file("data.txt"); // free data !!!!!
     if(data == NULL)
     {
@@ -33,14 +36,14 @@ int main()
         ERROR("cannot make an arrauy");
         return 1;
     }
-    
-    print_simple_text(ptr_data, str_count);
 
+    print_simple_text(ptr_data, str_count);
+    
     print_sorted_text_lr(ptr_data, str_count);
 
-    print_sorted_text_rl(ptr_data, str_count);
-
     print_sorted_text_lr_qs(ptr_data, str_count);
+
+    print_sorted_text_rl(ptr_data, str_count);
 
     print_sorted_text_rl_qs(ptr_data, str_count);
     

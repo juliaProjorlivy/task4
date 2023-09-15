@@ -1,7 +1,9 @@
 #include "print_text.h"
+#include "quick_sort_str.h"
 #include "string_compare.h"
 #include <assert.h>
 #include <stdlib.h>
+#include <string.h>
 
 static void print(size_t str_count, char **ptr_data)
 {
@@ -53,7 +55,7 @@ void print_sorted_text_lr_qs(char **ptr_data, size_t str_count)
 
     puts("this is a text sorted form left to right with the quick sort function");
 
-    qsort(ptr_data, str_count, sizeof(char*), string_compare_left_right);
+    Sort(ptr_data, str_count, string_compare_left_right_qs);
 
     print(str_count, ptr_data);
 }
@@ -64,7 +66,30 @@ void print_sorted_text_rl_qs(char **ptr_data, size_t str_count)
 
     puts("this is a text sorted form right to left with the quick sort function");
 
-    qsort(ptr_data, str_count, sizeof(char*), string_compare_right_left);
+    Sort(ptr_data, str_count, string_compare_right_left_qs);
 
     print(str_count, ptr_data);
 }
+
+// void print_sorted_text(int argc, const char *argv[])
+// {
+//     assert(argv != NULL);
+
+//     if(argc >= 2)
+//     {
+//         if (!strcmp(argv[1], "-st")) // st - simple text
+//         {
+
+//         }
+//         else if(!strcmp(argv[1], "-l"))
+//         {
+
+//         }
+//         else if(!strcmp(argv[1], "-r"))
+//         {
+
+//         }
+
+//     }
+        
+// }
