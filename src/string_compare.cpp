@@ -31,7 +31,7 @@ int string_compare_right_left(const void *line1, const void *line2)
     const char *l1 = line11 + len1;
     const char *l2 = line22 + len2;
 
-    while((*l1) && (*l2))
+    while((line11 != l1) && (line22 != l2))
     {
         while(!isalpha(*l1)) *l1--;
         while(!isalpha(*l2)) *l2--;
@@ -68,7 +68,7 @@ int string_compare_right_left_qs(const char *line11, const char *line22)
     const char *l1 = line11 + len1;
     const char *l2 = line22 + len2;
 
-    while((*l1) && (*l2))
+    while((line11 != l1) && (line22 != l2))
     {
         while(!isalpha(*l1)) *l1--;
         while(!isalpha(*l2)) *l2--;
