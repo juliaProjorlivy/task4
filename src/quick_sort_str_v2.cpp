@@ -18,7 +18,7 @@ static void simpleSort(void *data1, size_t el_size, int (*compare)(const void *,
 
     char *data = (char *)data1;
 
-    if(compare((const void *)(data), (const void *)(data + el_size)) > 0)
+    if(compare((data), (data + el_size)) > 0)
     {
         swap(data1, 1, 0, el_size);
     }
@@ -34,21 +34,16 @@ static size_t partition(void *data1, size_t data_size, size_t el_size, int (*com
     size_t right = data_size - 1;
     size_t mid = data_size / 2;
 
-    while(1)
+    while(left < right)
     {
-        while(right > mid && (compare((const void *)(data + right*el_size), (const void *)(data + mid*el_size)) >= 0)) //getting closer to the middle from the right
+        while(right > mid && (compare((data + right*el_size), (data + mid*el_size)) >= 0)) //getting closer to the middle from the right
         {
             right--;
         }
 
-        while(left < mid && (compare((const void *)(data + left*el_size), (const void *)(data + mid*el_size)) <= 0)) // getting closer to the middle from the left
+        while(left < mid && (compare((data + left*el_size), (data + mid*el_size)) <= 0)) // getting closer to the middle from the left
         {
             left++;
-        }
-        
-        if(left == right)
-        {
-            break; 
         }
         
         swap(data1, left, right, el_size);
