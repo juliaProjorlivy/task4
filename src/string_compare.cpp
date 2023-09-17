@@ -27,27 +27,24 @@ int string_compare_right_left(const void *line1, const void *line2)
 
     size_t len1 = strlen(line11) - 1;
     size_t len2 = strlen(line22) - 1;
-    size_t i = 0;
 
-    const char *l1 = line11 + len1 - i;
-    const char *l2 = line22 + len2 - i;
+    const char *l1 = line11 + len1;
+    const char *l2 = line22 + len2;
 
-    while((i <= len1) && (i <= len2))
+    while((*l1) && (*l2))
     {
+        while(!isalpha(*l1)) *l1--;
+        while(!isalpha(*l2)) *l2--;
 
-        if((*l1 != *l2) && isalpha(*l1) && isalpha(*l2))
+        if(*l1 != *l2)
         {
             return *l1 - *l2;
         }
 
-        if(!isalpha(*l1)) *l1--;
-        else if(!isalpha(*l2)) *l2--;
-        else
-        {
-            *l1--;
-            *l2--;
-        }
+        *l1--;
+        *l2--;
     }
+
 
     return 0;
 }
@@ -67,26 +64,22 @@ int string_compare_right_left_qs(const char *line11, const char *line22)
 
     size_t len1 = strlen(line11) - 1;
     size_t len2 = strlen(line22) - 1;
-    size_t i = 0;
 
-    const char *l1 = line11 + len1 - i;
-    const char *l2 = line22 + len2 - i;
+    const char *l1 = line11 + len1;
+    const char *l2 = line22 + len2;
 
-    while((i <= len1) && (i <= len2))
+    while((*l1) && (*l2))
     {
+        while(!isalpha(*l1)) *l1--;
+        while(!isalpha(*l2)) *l2--;
 
-        if((*l1 != *l2) && isalpha(*l1) && isalpha(*l2))
+        if(*l1 != *l2)
         {
             return *l1 - *l2;
         }
 
-        if(!isalpha(*l1)) *l1--;
-        else if(!isalpha(*l2)) *l2--;
-        else
-        {
-            *l1--;
-            *l2--;
-        }
+        *l1--;
+        *l2--;
     }
 
     return 0;
